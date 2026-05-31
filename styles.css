@@ -1,0 +1,515 @@
+/*
+ * Основні стилі для преміального односторінкового сайту кондитера.
+ * Використовуються спокійні пастельні відтінки та акцентні кольори для
+ * створення відчуття легкості, повітряності та елегантності.
+ */
+
+/* Reset & global styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  color: var(--color-text, #3c3c3c);
+  background-color: var(--color-background, #FDF9F5);
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3 {
+  margin-top: 0;
+  color: var(--color-text, #3c3c3c);
+  font-family: var(--font-display, 'Playfair Display', serif);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+p {
+  margin: 0 0 1rem 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* CSS variables for colors and fonts */
+:root {
+  /* Температурні кольори для більш стильного та менш яскравого відчуття */
+  --color-background: #F5EFE9;
+  --color-light: #FAF5F0;
+  --color-cream: #F1E7DE;
+  --color-pink-light: #F7E9E5;
+  --color-beige: #E9D9CC;
+  --color-primary: #CFA8B3; /* глибший пудрово‑рожевий */
+  --color-gold: #BFA066;    /* приглушений золотий */
+  --color-text: #4F3D3F;
+  --color-muted: #8A7C7E;
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Montserrat', sans-serif;
+  --border-radius: 12px;
+  --transition: 0.3s ease;
+}
+
+/* Container to limit width */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 0 2rem 0;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition), box-shadow var(--transition);
+}
+
+.btn-primary {
+  /* Надаємо основній кнопці насиченіший відтінок для кращого контрасту */
+  background-color: #c8859e;
+  color: #fff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+.btn-primary:hover {
+  /* Ще більш насичений колір при наведенні */
+  background-color: #b96e86;
+}
+
+.btn-outline {
+  /* Напівпрозорий фон, щоб кнопка не зливалася з фоном. Зменшуємо прозорість
+     для кращого контрасту на світлому тлі. */
+  background-color: rgba(207, 168, 179, 0.2);
+  border: 2px solid var(--color-primary);
+  /* Використовуємо основний акцентний колір для тексту. Це робить текст
+     читабельним і контрастним на світлому пастельному тлі. */
+  color: var(--color-primary);
+}
+.btn-outline:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.contact-btn {
+  margin-top: 1.5rem;
+}
+
+/* Section titles */
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  background-image: url('assets/ChatGPT Image 31 трав. 2026 р., 11_04_29.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Parallax effect on desktop */
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Темніший напівпрозорий шар для зменшення яскравості фонового зображення */
+  /* Трохи світліший напівпрозорий шар для кращої видимості заголовка */
+  background: rgba(79, 61, 63, 0.35);
+}
+
+.hero-content {
+  position: relative;
+  max-width: 700px;
+  z-index: 1;
+  padding: 2rem 1rem;
+  text-align: left;
+  color: #fff;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  /* Зробимо заголовок більш виразним: білий текст із тінню */
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
+.hero-buttons > .btn {
+  margin-right: 1rem;
+}
+
+/*
+ * Спеціальна стилізація для кнопки «Переглянути роботи» в герої.
+ * У заголовковому блоці темний напівпрозорий фон може робити напівпрозору
+ * кнопку занадто непомітною, тому збільшуємо непрозорість фону для
+ * кнопки з класом .btn-outline всередині .hero-buttons. Це робить
+ * її більш помітною, зберігаючи відчуття легкості та відмінності від
+ * основної кнопки.
+ */
+.hero-buttons .btn-outline {
+  /*
+   * Збільшуємо непрозорість фону для кнопки у герої.
+   * Більш високий коефіцієнт альфа (0.6) робить її помітнішою на темному фоні.
+   */
+  /*
+   * Збільшуємо непрозорість ще більше: альфа 0.8 для ще більшої
+   * контрастності на фоні героя. Так кнопка не зливатиметься, але
+   * лишатиметься відмінною від основної кнопки.
+   */
+  /* Збільшуємо непрозорість фону для кнопки у герої та робимо його
+     більш насиченим. Завдяки цьому текст завжди буде видимим на тлі
+     темної картинки. */
+  background-color: rgba(207, 168, 179, 0.9);
+  /* Білий текст забезпечує максимальний контраст. */
+  color: #ffffff;
+  /* Підсилюємо контраст рамки у герої. */
+  border-color: var(--color-primary);
+  /* У разі необхідності можна змінити прозорість (четверте значення) */
+}
+
+/* Gallery Section */
+.gallery-section {
+  padding: 3rem 0;
+  /* Ніжний градієнт для ще більш м’якого переходу */
+  background: linear-gradient(to bottom, var(--color-light) 0%, var(--color-cream) 100%);
+}
+
+/*
+ * Галерея робіт тепер використовує CSS Grid замість колоночного розташування.
+ * Це дозволяє зробити усі картинки квадратними і однакового розміру без
+ * перекриття та забезпечує акуратну сітку. Відстань між картками
+ * контролюється через gap.
+ */
+.masonry {
+  display: grid;
+  /* створюємо стільки колонок, скільки поміститься, мінімальна ширина елемента 280px */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  /* max-height для колапс/розгортання галереї */
+  transition: max-height 0.8s ease;
+}
+
+/* Collapsed/expanded states for the masonry container */
+.masonry.collapsed {
+  max-height: 1000px;
+  overflow: hidden;
+}
+
+.masonry.expanded {
+  max-height: none;
+  overflow: visible;
+}
+
+/* Приховані елементи галереї (понад 8) у колапснутому стані */
+.masonry-item.hidden {
+  display: none;
+}
+
+/*
+ * Щоб у великій роздільній здатності галерея мала 4 колонки, додаємо
+ * окремий медіа-запит. Це дозволяє показувати саме два ряди по 4
+ * фотографії (разом 8) у згорнутому стані.
+ */
+@media (min-width: 992px) {
+  .masonry {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Show more button positioning */
+.show-more-container {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.show-more-btn {
+  margin-top: 0;
+  /* Окремий стиль для кнопки "Показати всі роботи": легкий фон, контрастний текст. */
+  background-color: rgba(207, 168, 179, 0.35);
+  border: 2px solid var(--color-primary);
+  color: var(--color-text);
+}
+
+/* Картки галереї: квадратні елементи з вирівнюванням картинки по центру */
+.masonry-item {
+  position: relative;
+  aspect-ratio: 1 / 1; /* квадратне співвідношення сторін */
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  display: block;
+  width: 100%;
+}
+
+.masonry-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* масштабувати, зберігаючи пропорції */
+  object-position: center; /* центр кадрування */
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.masonry-item:hover img {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* About Section */
+.about-section {
+  padding: 3rem 0;
+  background: linear-gradient(to bottom, var(--color-cream) 0%, var(--color-beige) 100%);
+}
+.about-text {
+  max-width: 800px;
+  margin: 0 auto 1.25rem auto;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+/* Fillings Section */
+.fillings-section {
+  padding: 3rem 0;
+  background: linear-gradient(to bottom, var(--color-beige) 0%, var(--color-cream) 100%);
+}
+.fillings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+.fill-card {
+  background-color: var(--color-light);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 250px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.fill-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+.fill-card img {
+  width: 100%;
+  max-width: 170px;
+  height: 160px;
+  object-fit: contain;
+  margin-bottom: 0.75rem;
+}
+.fill-card h3 {
+  font-size: 1rem;
+  margin: 0;
+  color: var(--color-text);
+}
+  height: auto;
+  border-radius: 22px;
+}
+
+/* Order Section */
+.order-section {
+  padding: 3rem 0;
+  background: linear-gradient(to bottom, var(--color-light) 0%, var(--color-cream) 100%);
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+.step {
+  background-color: var(--color-cream);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.step:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+.step-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+.step h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+.step p {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+/* Reviews Section */
+.reviews-section {
+  padding: 3rem 0;
+  background: linear-gradient(to bottom, var(--color-cream) 0%, var(--color-beige) 100%);
+}
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+.review-card {
+  background-color: var(--color-light);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+.stars {
+  color: var(--color-primary);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.review-text {
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+}
+.review-author {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 3rem 0;
+  /* Двоколірний градієнт для контактного блоку */
+  background: linear-gradient(to bottom, var(--color-beige) 0%, var(--color-light) 100%);
+  text-align: center;
+}
+.contact-info {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+.contact-info p strong {
+  color: var(--color-primary);
+}
+.contact-info a {
+  /* Використовуємо темний текстовий колір для посилань у контактах — це
+     підвищує контраст та читабельність на світлому фоні. */
+  color: var(--color-text);
+  text-decoration: underline;
+}
+.contact-info a:hover {
+  /* При наведенні змінюємо колір на акцентний та прибираємо підкреслення. */
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+/* Контакти: відвідані посилання повинні зберігати той самий колір, що й звичайні */
+/* Відвідані, звичайні та активні лінки в блоці контактів мають однаковий колір */
+/* Забезпечуємо єдиний колір для всіх станів посилань у блоці контактів.
+   Використовуємо важливість, щоб перекрити системні стилі браузера. */
+.contact-info a:link,
+.contact-info a:visited,
+.contact-info a:active {
+  color: var(--color-text) !important;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--color-beige);
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+/* Fade-in animation on scroll */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive tweaks */
+@media (max-width: 992px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 60vh;
+    background-attachment: scroll;
+  }
+  .hero-title {
+    font-size: 1.6rem;
+  }
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  .fillings-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+  .fill-card {
+    min-height: 150px;
+    padding: 0.55rem;
+  }
+  .fill-card img {
+    height: 92px;
+    margin-bottom: 0.45rem;
+  }
+  .fill-card h3 {
+    font-size: 0.72rem;
+    line-height: 1.2;
+  }
+}
